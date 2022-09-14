@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RxKotlin</string>
+    <string name="name">Name</string>
+    <string name="title">Title</string>
+    <string name="weight">Weight</string>
+    <string name="Search">Search</string>
+    <string name="user">User</string>
+    <string name="bill">Bill</string>
+    <string name="settlement">Settlement</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_user_acivity">AddUserAcivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="user_name">User name</string>
+    <string name="save">Save</string>
+    <string name="surname">Surname</string>
+    <string name="email_address">Email address</string>
+    <string name="user_surname">Surname</string>
+    <string name="sample_text">Sample text</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="title_activity_add_bill">AddBillActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="category">Category</string>
+    <string name="owner">Owner</string>
+    <string name="prize">Prize</string>
+    <string name="debtors">Debtors</string>
+    <string name="date">Date</string>
+
+    <!--Placeholders-->
+    <string name="prize_placeholder">%1$s zł</string>
+</resources>
