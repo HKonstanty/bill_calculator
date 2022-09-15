@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.odhiambodevelopers.rxkotlin.database.models.Bill
 import com.odhiambodevelopers.rxkotlin.database.models.ProductWithDebtors
 import com.odhiambodevelopers.rxkotlin.databinding.ItemProductBinding
 
 class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecyclerViewAdapter.ProductViewHolder>(DiffUtilCallback) {
+
+    var onItemClick : ((ProductWithDebtors) -> Unit)? = null
 
     object DiffUtilCallback : DiffUtil.ItemCallback<ProductWithDebtors>() {
         override fun areItemsTheSame(
@@ -43,7 +46,7 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
             binding.productArrowImv.setOnClickListener {
                 product.product.visibility = !product.product.visibility
                 //notifyItemChanged(absoluteAdapterPosition)
-                notifyItemChanged(position)
+                notifyItemChanged(adapterPosition)
             }
         }
     }
@@ -58,5 +61,8 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
         val product = getItem(position)
         holder.bind(product)
 
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(product)
+        }
     }
 }
