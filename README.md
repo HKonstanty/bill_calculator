@@ -53,19 +53,19 @@ Below some application screens
 ### Application main screens
 
 <p align="center">
-	<img src="./RxKotlin-master/screenshot/user_list.png" width="250" >
+	<img src="./screenshot/user_list.png" width="250" >
 </p>
 <p align="center">
-	<img src="./RxKotlin-master/screenshot/bill_list.png" width="250" >
+	<img src="./screenshot/bill_list.png" width="250" >
 </p>
 
 
 ### Overview of application screens
 
 <p align="center">
-	<img src="./RxKotlin-master/screenshot/edit_user_screen.png" width="250" >
-	<img src="./RxKotlin-master/screenshot/add_bill_info.png" width="250" >
-	<img src="./RxKotlin-master/screenshot/product_list.png" width="250" >
+	<img src="./screenshot/edit_user_screen.png" width="250" >
+	<img src="./screenshot/add_bill_info.png" width="250" >
+	<img src="./screenshot/product_list.png" width="250" >
 </p>
 
 ## Setup
