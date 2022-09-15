@@ -37,4 +37,6 @@
 
     <!--Placeholders-->
     <string name="prize_placeholder">%1$s zł</string>
+
+    <string name="take_photo">Take Photo</string>
 </resources>
