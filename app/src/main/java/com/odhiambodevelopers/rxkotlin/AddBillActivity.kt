@@ -11,10 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.odhiambodevelopers.rxkotlin.UI.billviewpager.BillViewPagerAdapter
-import com.odhiambodevelopers.rxkotlin.UI.billviewpager.InfoBillFragment
-import com.odhiambodevelopers.rxkotlin.UI.billviewpager.PhotoBillFragment
-import com.odhiambodevelopers.rxkotlin.UI.billviewpager.ProductsListBillFragment
+import com.odhiambodevelopers.rxkotlin.UI.billviewpager.*
 import com.odhiambodevelopers.rxkotlin.databinding.ActivityAddBillBinding
 
 class AddBillActivity : AppCompatActivity() {
@@ -42,11 +39,18 @@ class AddBillActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+//        val fragmentList = arrayListOf(
+//            InfoBillFragment(),
+//            ProductsListBillFragment(),
+//            PhotoBillFragment()
+//        )
+
         val fragmentList = arrayListOf(
             InfoBillFragment(),
-            ProductsListBillFragment(),
+            ProductsListParentFragment(),
             PhotoBillFragment()
         )
+
 
         val adapter = BillViewPagerAdapter(
             fragmentList,

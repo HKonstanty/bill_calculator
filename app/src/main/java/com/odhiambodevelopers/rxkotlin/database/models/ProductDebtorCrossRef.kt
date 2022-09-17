@@ -2,8 +2,8 @@ package com.odhiambodevelopers.rxkotlin.database.models
 
 import androidx.room.Entity
 
-@Entity(primaryKeys = ["productId", "debtorId"])
+@Entity(primaryKeys = ["productId", "userId"])
 data class ProductDebtorCrossRef(
     val productId: Long,
-    val debtorId: Long
+    val userId: Long
 )

@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
 import com.odhiambodevelopers.rxkotlin.database.models.Bill
+import com.odhiambodevelopers.rxkotlin.database.models.Product
+import com.odhiambodevelopers.rxkotlin.database.models.ProductWithDebtors
 import com.odhiambodevelopers.rxkotlin.database.models.User
 import com.odhiambodevelopers.rxkotlin.repository.BillRepository
 import com.odhiambodevelopers.rxkotlin.repository.UserRepository
@@ -14,8 +16,8 @@ import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
-class BillViewModel(private val userRepo: UserRepository,
-                    private val billRepo: BillRepository
+class BillViewModel(private val userRepo: UserRepository? = null,
+                    private val billRepo: BillRepository? = null
                     ) : ViewModel(), LifecycleObserver {
 
     private val TAG = "BillViewModel"
@@ -39,6 +41,9 @@ class BillViewModel(private val userRepo: UserRepository,
     private var _selectedDebtors = MutableLiveData<String>()
     val selectedDebtors: LiveData<String> get() = _selectedDebtors
 
+    private var _products = MutableLiveData<List<ProductWithDebtors>>()
+    val productList: LiveData<List<ProductWithDebtors>> get() = _products
+
     private var _selectedOwnerUser: User? = null
     private var _selectedDateLong: Long? = null
 
@@ -54,6 +59,22 @@ class BillViewModel(private val userRepo: UserRepository,
         Log.d(TAG, selectedDebtors.size.toString())
     }
 
+    fun addProduct(title: String, amount: Int, prize: Double, selectedDebtors: List<User>) {
+       val oldList = _products.value
+        val newProduct = ProductWithDebtors(
+            Product(0, 0, title, ((prize * 100).roundToInt().toDouble() / 100), amount),
+            selectedDebtors)
+        if (oldList == null)
+            _products.value = listOf(newProduct)
+        else
+            _products.value = oldList.plus(newProduct)
+        Log.i(TAG, "add new product ${productList.value?.size}")
+    }
+
+    fun saveBillWithProducts() {
+        TODO()
+    }
+
     fun saveBill(billTitle: String, category: String, prize: String) {
         Log.d(TAG, billTitle)
         Log.d(TAG, category)
@@ -67,28 +88,18 @@ class BillViewModel(private val userRepo: UserRepository,
             category,
             ((prize.toDouble() * 100).roundToInt().toDouble() / 100),
             _selectedDateLong!!)
-            billRepo.insertBill(bill)
+            billRepo!!.insertBill(bill)
         }
     }
 
-//    init {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val userList = userRepo.getUsers()
-//            withContext(Dispatchers.Main) {
-//                _users.value = userList
-//                _categories.value = listOf("Attraction", "Food", "Night out", "For home")
-//            }
-//        }
-//    }
-
     fun getUsers(): List<User> {
-        return userRepo.getUsers()
+        return userRepo!!.getUsers()
     }
 
     fun getCategories() = listOf("Attraction", "Food", "Night out", "For home")
 
     fun getUsersFlowable(): Flowable<List<User>> {
-        return userRepo.getUsersFlowable().switchMap { data -> Flowable.just(data) }
+        return userRepo!!.getUsersFlowable().switchMap { data -> Flowable.just(data) }
     }
 }
 

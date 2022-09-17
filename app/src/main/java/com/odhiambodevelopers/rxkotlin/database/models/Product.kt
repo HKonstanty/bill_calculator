@@ -12,6 +12,7 @@ data class Product(
     val productName: String,
     val productPrize: Double,
     val productAmount: Int,
+) {
     @Ignore
     var visibility: Boolean = false
-)
+}

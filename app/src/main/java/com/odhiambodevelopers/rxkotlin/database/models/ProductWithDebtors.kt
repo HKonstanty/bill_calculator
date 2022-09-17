@@ -9,7 +9,7 @@ data class ProductWithDebtors(
     val product: Product,
     @Relation(
         parentColumn = "productId",
-        entityColumn = "debtorId",
+        entityColumn = "userId",
         associateBy = Junction(ProductDebtorCrossRef::class)
     )
     val debtors: List<User>

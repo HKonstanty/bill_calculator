@@ -2,6 +2,7 @@ package com.odhiambodevelopers.rxkotlin.database
 
 import androidx.room.*
 import com.odhiambodevelopers.rxkotlin.database.models.User
+import com.odhiambodevelopers.rxkotlin.database.models.UserWithBills
 import io.reactivex.Flowable
 
 @Dao
@@ -29,4 +30,8 @@ interface UserDao {
 
     @Update
     fun updateUser(user: User): Int
+
+    @Transaction
+    @Query("SELECT * FROM User")
+    fun getUsersWithBills(): List<UserWithBills>
 }

@@ -5,8 +5,6 @@ import com.odhiambodevelopers.rxkotlin.database.models.Bill
 
 class BillRepository(private val billDao: BillDao) {
 
-    fun getBillsWithOwner() = billDao.getUsersWithBills()
-
     fun getBills() = billDao.getBills()
 
     fun deleteBill(bill: Bill) {

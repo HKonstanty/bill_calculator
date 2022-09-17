@@ -3,7 +3,7 @@ package com.odhiambodevelopers.rxkotlin.database.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "bills")
+@Entity
 data class Bill(
     @PrimaryKey(autoGenerate = true)
     val billId: Long,
