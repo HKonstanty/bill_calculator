@@ -9,6 +9,7 @@ import com.odhiambodevelopers.rxkotlin.database.models.Product
 import com.odhiambodevelopers.rxkotlin.database.models.ProductWithDebtors
 import com.odhiambodevelopers.rxkotlin.database.models.User
 import com.odhiambodevelopers.rxkotlin.repository.BillRepository
+import com.odhiambodevelopers.rxkotlin.repository.ProductRepository
 import com.odhiambodevelopers.rxkotlin.repository.UserRepository
 import io.reactivex.Flowable
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,8 @@ import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 class BillViewModel(private val userRepo: UserRepository? = null,
-                    private val billRepo: BillRepository? = null
+                    private val billRepo: BillRepository? = null,
+                    private val productRepo: ProductRepository? = null
                     ) : ViewModel(), LifecycleObserver {
 
     private val TAG = "BillViewModel"
@@ -109,14 +111,15 @@ class BillViewModel(private val userRepo: UserRepository? = null,
 }
 
 class BillViewModelFactory(owner: SavedStateRegistryOwner,
-                           private val dependency1: UserRepository,
-                           private val dependency2: BillRepository,
+                           private val userRepo: UserRepository,
+                           private val billRepo: BillRepository,
+                           private val productRepo: ProductRepository,
                            defaultArgs: Bundle? = null) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
     override fun <T : ViewModel> create(
         key: String,
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        return BillViewModel(dependency1, dependency2) as T
+        return BillViewModel(userRepo, billRepo, productRepo) as T
     }
 }

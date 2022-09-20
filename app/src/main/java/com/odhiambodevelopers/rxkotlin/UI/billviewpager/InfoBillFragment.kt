@@ -22,6 +22,7 @@ import com.odhiambodevelopers.rxkotlin.database.AppDatabase
 import com.odhiambodevelopers.rxkotlin.database.models.User
 import com.odhiambodevelopers.rxkotlin.databinding.FragmentInfoBillBinding
 import com.odhiambodevelopers.rxkotlin.repository.BillRepository
+import com.odhiambodevelopers.rxkotlin.repository.ProductRepository
 import com.odhiambodevelopers.rxkotlin.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -43,7 +44,8 @@ class InfoBillFragment : Fragment() {
         BillViewModelFactory(
             this,
             UserRepository(AppDatabase.getInstance(requireContext()).userDao),
-            BillRepository(AppDatabase.getInstance(requireContext()).billDao)
+            BillRepository(AppDatabase.getInstance(requireContext()).billDao),
+            ProductRepository(AppDatabase.getInstance(requireContext()).productDao)
         )
     }
     private lateinit var userRepo: UserRepository
