@@ -60,7 +60,7 @@
                 app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/cross_imv"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/product_prize_tv"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="6"
                 app:layout_constraintBottom_toBottomOf="@+id/product_prize_tv"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintEnd_toStartOf="@+id/cross_imv"
                 app:layout_constraintTop_toTopOf="@+id/product_prize_tv" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -112,25 +112,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/debtors_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    android:text="TextView"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/delete_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:text="Button"
-                    app:layout_constraintBottom_toTopOf="@+id/textView7"
-                    app:layout_constraintStart_toEndOf="@+id/textView7" />
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/delete"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

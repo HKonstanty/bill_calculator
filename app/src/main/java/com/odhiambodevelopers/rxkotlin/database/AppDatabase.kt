@@ -4,12 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.odhiambodevelopers.rxkotlin.database.models.Bill
-import com.odhiambodevelopers.rxkotlin.database.models.Product
-import com.odhiambodevelopers.rxkotlin.database.models.ProductDebtorCrossRef
-import com.odhiambodevelopers.rxkotlin.database.models.User
+import com.odhiambodevelopers.rxkotlin.database.models.*
 
-@Database(entities = [User::class, Bill::class, Product::class, ProductDebtorCrossRef::class], exportSchema = false, version = 1)
+@Database(entities = [User::class, Bill::class, Product::class, ProductDebtorCrossRef::class, BillDebtorCrossRef::class], exportSchema = false, version = 1)
 abstract class AppDatabase :RoomDatabase() {
 
     abstract val userDao: UserDao

@@ -34,4 +34,8 @@ interface UserDao {
     @Transaction
     @Query("SELECT * FROM User")
     fun getUsersWithBills(): List<UserWithBills>
+
+    @Transaction
+    @Query("SELECT * FROM User WHERE userId = :userId")
+    fun getUserByUserIdWithBills(userId: Long): List<UserWithBills>
 }

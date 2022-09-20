@@ -15,6 +15,13 @@ interface ProductDao {
     @Query("SELECT * FROM Product")
     fun getProducts(): List<Product>
 
+    @Transaction
+    @Query("SELECT * FROM Product WHERE correspondingBillId = :billId")
+    fun getProductsWithDebtorsWithBillId(billId: Long): List<ProductWithDebtors>
+
+    @Query("SELECT * FROM Product WHERE correspondingBillId = :billId")
+    fun getProductsWithBillId(billId: Long): List<Product>
+
     @Insert
     fun insertProduct(vararg product:Product): List<Long>
 
@@ -26,4 +33,13 @@ interface ProductDao {
 
     @Delete
     fun deleteProduct(vararg product: Product)
+
+    @Transaction
+    fun deleteProductWithDebtors(product: Product) {
+        deleteProduct(product)
+        deleteProductDebtorCrossRef(product.productId)
+    }
+
+    @Query("DELETE FROM ProductDebtorCrossRef WHERE productId = :productId")
+    fun deleteProductDebtorCrossRef(productId: Long)
 }

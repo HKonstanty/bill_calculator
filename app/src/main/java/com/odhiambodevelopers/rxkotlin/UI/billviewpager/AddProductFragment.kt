@@ -121,6 +121,7 @@ class AddProductFragment : Fragment() {
                     Toast.makeText(requireContext(), "Neutral button clicked", Toast.LENGTH_SHORT).show()
                     binding.productDebtorsTv.text.clear()
                     selected.onEachIndexed { index, _ -> selected[index] = false }
+                    selectedDebtors.clear()
                 }
         }
     }

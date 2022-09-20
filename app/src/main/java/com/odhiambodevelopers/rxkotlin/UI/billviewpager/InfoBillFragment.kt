@@ -2,7 +2,6 @@ package com.odhiambodevelopers.rxkotlin.UI.billviewpager
 
 import android.R
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +20,7 @@ import com.odhiambodevelopers.rxkotlin.database.AppDatabase
 import com.odhiambodevelopers.rxkotlin.database.models.User
 import com.odhiambodevelopers.rxkotlin.databinding.FragmentInfoBillBinding
 import com.odhiambodevelopers.rxkotlin.repository.BillRepository
+import com.odhiambodevelopers.rxkotlin.repository.ProductRepository
 import com.odhiambodevelopers.rxkotlin.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -43,11 +42,13 @@ class InfoBillFragment : Fragment() {
         BillViewModelFactory(
             this,
             UserRepository(AppDatabase.getInstance(requireContext()).userDao),
-            BillRepository(AppDatabase.getInstance(requireContext()).billDao)
+            BillRepository(AppDatabase.getInstance(requireContext()).billDao),
+            ProductRepository(AppDatabase.getInstance(requireContext()).productDao)
         )
     }
     private lateinit var userRepo: UserRepository
     private val compositeDisposable = CompositeDisposable()
+    private lateinit var selectedDebtors: ArrayList<User>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +71,7 @@ class InfoBillFragment : Fragment() {
             createDatePicker()
         }
         lifecycleScope.launch(Dispatchers.IO) {
-            createAlertDialog()
+            createBillDebtorsAlertDialog()
         }
         setupOwner()
         setupCategory()
@@ -90,37 +91,6 @@ class InfoBillFragment : Fragment() {
                 { error -> Log.e("RxJava", error.message.toString())}
             )
         compositeDisposable.add(result)
-
-//        Flowable.fromArray(viewmodel.getUsers())
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnNext {
-//                Log.d("RxJava", "User: ${it.size}")
-//            }
-//            .subscribe()
-//        val observable = Observable.fromArray(userRepo.getUsers())
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//
-//        observable.subscribe(object : Observer<List<User>> {
-//            override fun onSubscribe(d: Disposable) {
-//
-//            }
-//
-//            override fun onNext(u: List<User>) {
-//                Log.d("RxJava", u.toString())
-//            }
-//
-//            override fun onError(e: Throwable) {
-//                Log.d("RxJava", e.toString())
-//            }
-//
-//            override fun onComplete() {
-//                Log.d("RxJava", "Complete, list size ${intList.size}")
-//            }
-//
-//        })
-
     }
 
     private fun setOnClickListeners() {
@@ -129,14 +99,14 @@ class InfoBillFragment : Fragment() {
         binding.billDebtorsTv.setOnClickListener { showAlertDialog() }
     }
 
-    private fun createAlertDialog() {
-        //val items = arrayOf("Ewa", "Bartek", "Zosia")
-        val users: Array<String> = userRepo.getUsers().map { it.userName ?: it.userEmail ?: "" }.toTypedArray()
+    private fun createBillDebtorsAlertDialog() {
+        val users = viewmodel.getUsers()
+        val usersNames: Array<String> = users.map { it.userName ?: it.userEmail ?: "" }.toTypedArray()
         val selected = BooleanArray(users.size)
 
         dialog = AlertDialog.Builder(requireContext())
             .setTitle("Select debtors")
-            .setMultiChoiceItems(users, selected) { _, which, isChecked ->
+            .setMultiChoiceItems(usersNames, selected) { _, which, isChecked ->
                 if (isChecked) {
                     selected[which] = true
                 }
@@ -147,7 +117,12 @@ class InfoBillFragment : Fragment() {
             .setPositiveButton("OK") { _, i ->
                 Toast.makeText(requireContext(), "Positive button clicked", Toast.LENGTH_SHORT).show()
                 var debtors = ""
-                selected.onEachIndexed { index, b -> if (b) { debtors += (users[index] + ", ") } }
+                selected.onEachIndexed { index, b -> if (b)
+                    {
+                        debtors += (usersNames[index] + ", ")
+                        selectedDebtors.add(users[index])
+                    }
+                }
                 // String index out of range: -2
                 if (debtors.length > 2) {
                     binding.billDebtorsTv.setText(debtors.substring(0, debtors.length-2))
@@ -164,6 +139,7 @@ class InfoBillFragment : Fragment() {
                 Toast.makeText(requireContext(), "Neutral button clicked", Toast.LENGTH_SHORT).show()
                 binding.billDebtorsTv.text.clear()
                 selected.onEachIndexed { index, _ -> selected[index] = false }
+                selectedDebtors.clear()
             }
         //dialog.show()
     }
@@ -195,7 +171,8 @@ class InfoBillFragment : Fragment() {
             viewmodel.saveBill(
                 binding.billTitleEt.text.toString(),
                 binding.billCategoryTv.text.toString(),
-                binding.billPrizeEt.text.toString()
+                binding.billPrizeEt.text.toString(),
+                selectedDebtors
             )
             Intent(requireContext(), MainActivity::class.java).also { startActivity(it) }
         }
