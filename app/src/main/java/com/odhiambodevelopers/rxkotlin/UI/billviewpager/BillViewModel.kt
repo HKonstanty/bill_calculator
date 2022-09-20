@@ -41,8 +41,8 @@ class BillViewModel(private val userRepo: UserRepository? = null,
     private var _selectedDebtors = MutableLiveData<String>()
     val selectedDebtors: LiveData<String> get() = _selectedDebtors
 
-    private var _products = MutableLiveData<List<ProductWithDebtors>>()
-    val productList: LiveData<List<ProductWithDebtors>> get() = _products
+    private var _products = MutableLiveData<MutableList<ProductWithDebtors>>()
+    val productList: LiveData<MutableList<ProductWithDebtors>> get() = _products
 
     private var _selectedOwnerUser: User? = null
     private var _selectedDateLong: Long? = null
@@ -65,9 +65,9 @@ class BillViewModel(private val userRepo: UserRepository? = null,
             Product(0, 0, title, ((prize * 100).roundToInt().toDouble() / 100), amount),
             selectedDebtors)
         if (oldList == null)
-            _products.value = listOf(newProduct)
+            _products.value = mutableListOf(newProduct)
         else
-            _products.value = oldList.plus(newProduct)
+            _products.value?.add(newProduct)
         Log.i(TAG, "add new product ${productList.value?.size}")
     }
 
@@ -100,6 +100,11 @@ class BillViewModel(private val userRepo: UserRepository? = null,
 
     fun getUsersFlowable(): Flowable<List<User>> {
         return userRepo!!.getUsersFlowable().switchMap { data -> Flowable.just(data) }
+    }
+
+    fun deleteProduct(productWithDebtors: ProductWithDebtors) {
+        productList.value?.remove(productWithDebtors)
+        Log.i(TAG, "Delete Product with debtors")
     }
 }
 

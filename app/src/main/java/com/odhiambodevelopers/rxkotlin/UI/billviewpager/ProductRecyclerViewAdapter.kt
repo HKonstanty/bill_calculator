@@ -12,7 +12,8 @@ import com.odhiambodevelopers.rxkotlin.databinding.ItemProductBinding
 
 class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecyclerViewAdapter.ProductViewHolder>(DiffUtilCallback) {
 
-    var onItemClick : ((ProductWithDebtors) -> Unit)? = null
+//    var onItemClick : ((ProductWithDebtors) -> Unit)? = null
+    var onItemClick : ((ProductWithDebtors, position: Int) -> Unit)? = null
 
     object DiffUtilCallback : DiffUtil.ItemCallback<ProductWithDebtors>() {
         override fun areItemsTheSame(
@@ -30,23 +31,28 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
         }
     }
 
-    inner class ProductViewHolder(private val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ProductViewHolder(private val binding: ItemProductBinding, clickAtPosition: (Int) -> (Unit)): RecyclerView.ViewHolder(binding.root) {
 
         val layoutInflater = binding.productExpandableLayout
+
+        init {
+            binding.deleteBtn.setOnClickListener { clickAtPosition(absoluteAdapterPosition) }
+        }
 
         fun bind(product: ProductWithDebtors) {
             binding.productNameTv.text = product.product.productName
             binding.productAmountTv.text = product.product.productAmount.toString()
             binding.productPrizeTv.text = "${product.product.productPrize} zł"
             binding.productDebtorsTv.text = product.debtors.size.toString()
+            binding.debtorsTv.text = product.debtors.joinToString(", ")
 
             val isVisible: Boolean = product.product.visibility
             binding.productExpandableLayout.visibility = if (isVisible) View.VISIBLE else View.GONE
 
-            binding.productArrowImv.setOnClickListener {
+            binding.root.setOnClickListener {
                 product.product.visibility = !product.product.visibility
-                //notifyItemChanged(absoluteAdapterPosition)
-                notifyItemChanged(adapterPosition)
+                notifyItemChanged(absoluteAdapterPosition)
+                //notifyItemChanged(adapterPosition)
             }
         }
     }
@@ -54,15 +60,17 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
             ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        ) {
+            onItemClick?.invoke(getItem(it), it)
+        }
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
         holder.bind(product)
-
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(product)
-        }
+//
+//        holder.itemView.setOnClickListener {
+//            onItemClick?.invoke(product)
+//        }
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
 import com.odhiambodevelopers.rxkotlin.R
+import com.odhiambodevelopers.rxkotlin.database.models.ProductWithDebtors
 import com.odhiambodevelopers.rxkotlin.databinding.FragmentProductsListBillBinding
 import com.odhiambodevelopers.rxkotlin.repository.FakeBillRepository
 
@@ -36,10 +37,16 @@ class ProductsListBillFragment : Fragment() {
         })
 
 
-        adapter.onItemClick = {
-            Log.d(TAG, "Item clicked ${it.product.productName}")
+//        adapter.onItemClick = {
+//            Log.d(TAG, "Item clicked ${it.product.productName}")
+//        }
+        adapter.onItemClick = { productWithDebtors: ProductWithDebtors, i: Int ->
+            Log.d(TAG, "Item clicked ${productWithDebtors.product.productName}")
+            viewModel.deleteProduct(productWithDebtors)
+            adapter.notifyItemRemoved(i)
         }
-        binding.addProductBt.setOnClickListener {
+
+            binding.addProductBt.setOnClickListener {
             parentFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<AddProductFragment>(R.id.fragment_container_view)
