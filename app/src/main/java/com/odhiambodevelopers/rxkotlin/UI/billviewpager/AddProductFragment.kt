@@ -106,7 +106,7 @@ class AddProductFragment : Fragment() {
                 .setPositiveButton("OK") { _, i ->
                     Toast.makeText(requireContext(), "Positive button clicked", Toast.LENGTH_SHORT).show()
                     var debtors = ""
-                    selectedDebtors = ArrayList<User>()
+                    selectedDebtors = ArrayList()
                     selected.onEachIndexed { index, b -> if (b) {
                             debtors += (usersNames[index] + ", ")
                             selectedDebtors.add(users[index])

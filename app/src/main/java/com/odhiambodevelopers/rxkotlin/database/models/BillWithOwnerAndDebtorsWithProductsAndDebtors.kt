@@ -8,8 +8,8 @@ data class BillWithOwnerAndDebtorsWithProductsAndDebtors(
     @Embedded
     val bill: Bill,
     @Relation(
-        parentColumn = "billId",
-        entityColumn = "ownerId"
+        parentColumn = "ownerId",
+        entityColumn = "userId"
     )
     val owner: User,
     @Relation(

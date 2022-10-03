@@ -96,8 +96,11 @@ class BillViewModel(private val userRepo: UserRepository? = null,
                 _selectedDateLong!!
             )
             //billRepo?.insertBill(bill)
-            billRepo?.insertBillWithDebtors(bill, billDebtors)
+            val billId = billRepo?.insertBillWithDebtors(bill, billDebtors)
+            productList.value?.forEach { it.product.apply { correspondingBillId = billId!! } }
+            //productList.value?.map { it.product.correspondingBillId = billId!! }?.toCollection(List<ProductWithDebtors>)
             productRepo?.insertProductsWithDebtors(productList.value!!.toList())
+            //productRepo?.insertProductsWithDebtors(productList.value!!.toList())
         }
     }
 

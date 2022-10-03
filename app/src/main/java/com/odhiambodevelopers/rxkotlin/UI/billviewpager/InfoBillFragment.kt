@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -38,7 +39,7 @@ class InfoBillFragment : Fragment() {
     private lateinit var dialog: AlertDialog.Builder
     private var categories: List<String>? = null
     private var users: List<User>? = null
-    private val viewmodel: BillViewModel by viewModels {
+    private val viewmodel: BillViewModel by activityViewModels {
         BillViewModelFactory(
             this,
             UserRepository(AppDatabase.getInstance(requireContext()).userDao),
@@ -117,6 +118,7 @@ class InfoBillFragment : Fragment() {
             .setPositiveButton("OK") { _, i ->
                 Toast.makeText(requireContext(), "Positive button clicked", Toast.LENGTH_SHORT).show()
                 var debtors = ""
+                selectedDebtors = ArrayList()
                 selected.onEachIndexed { index, b -> if (b)
                     {
                         debtors += (usersNames[index] + ", ")

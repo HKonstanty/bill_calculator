@@ -36,10 +36,15 @@
     <string name="date">Date</string>
 
     <!--Placeholders-->
-    <string name="prize_placeholder">%1$s zł</string>
+    <string name="prize_placeholder">%1$f zł</string>
 
     <string name="take_photo">Take Photo</string>
     <string name="new_product">New product</string>
     <string name="amount">Amount</string>
     <string name="add">Add</string>
+    <string name="general_information">General information</string>
+    <string name="picture">Picture</string>
+    <string name="products">Products</string>
+    <string name="total">Total</string>
+    <string name="bill_debtors">Bill debtors</string>
 </resources>

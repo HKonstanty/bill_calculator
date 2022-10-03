@@ -19,11 +19,13 @@
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_add_bill.xml" value="0.1" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_add_detail.xml" value="0.1" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_add_user.xml" value="0.1" />
+        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_bill_details.xml" value="0.264" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/activity_user_details.xml" value="0.1" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/content_add_user_acivity.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_add_bill.xml" value="0.1796875" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_add_product.xml" value="0.1796875" />
+        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_bill_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_bill_list.xml" value="0.22146739130434784" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.192481884057971" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_first.xml" value="0.1" />
@@ -37,9 +39,10 @@
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_settlement_list.xml" value="0.13405797101449277" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_user_details.xml" value="0.2" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/fragment_user_list.xml" value="0.2" />
-        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_bill.xml" value="0.6" />
-        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_product.xml" value="0.264" />
+        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_bill.xml" value="0.4" />
+        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_product.xml" value="0.4" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_product_2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_product_details.xml" value="0.4" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_settlement.xml" value="0.192481884057971" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/item_user.xml" value="0.264" />
         <entry key="..\:/Users/konst/Downloads/RxKotlin-master/RxKotlin-master/app/src/main/res/layout/modal_bottom_sheet.xml" value="0.1" />

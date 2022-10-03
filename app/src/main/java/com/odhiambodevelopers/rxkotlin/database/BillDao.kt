@@ -46,7 +46,7 @@ interface BillDao {
 
     @Transaction
     @Query("SELECT * FROM Bill")
-    fun getBillWithOwnerAndDebtors(billId: Long): List<BillWithOwnerAndDebtors>
+    fun getBillWithOwnerAndDebtors(): List<BillWithOwnerAndDebtors>
 
     @Transaction
     @Query("SElECT * FROM Bill WHERE billId = :billId")
