@@ -69,7 +69,10 @@ class BillViewModel(private val userRepo: UserRepository? = null,
         if (oldList == null)
             _products.value = mutableListOf(newProduct)
         else
+<<<<<<< HEAD
             //_products.value = oldList.(newProduct)
+=======
+>>>>>>> master
             _products.value?.add(newProduct)
         Log.i(TAG, "add new product ${productList.value?.size}")
     }
@@ -114,8 +117,14 @@ class BillViewModel(private val userRepo: UserRepository? = null,
         return userRepo!!.getUsersFlowable().switchMap { data -> Flowable.just(data) }
     }
 
+<<<<<<< HEAD
     fun deleteProduct(product: ProductWithDebtors) {
         productList.value?.remove(product)
+=======
+    fun deleteProduct(productWithDebtors: ProductWithDebtors) {
+        productList.value?.remove(productWithDebtors)
+        Log.i(TAG, "Delete Product with debtors")
+>>>>>>> master
     }
 }
 

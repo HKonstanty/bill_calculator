@@ -12,6 +12,10 @@ import com.odhiambodevelopers.rxkotlin.databinding.ItemProductBinding
 
 class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecyclerViewAdapter.ProductViewHolder>(DiffUtilCallback) {
 
+<<<<<<< HEAD
+=======
+//    var onItemClick : ((ProductWithDebtors) -> Unit)? = null
+>>>>>>> master
     var onItemClick : ((ProductWithDebtors, position: Int) -> Unit)? = null
 
     object DiffUtilCallback : DiffUtil.ItemCallback<ProductWithDebtors>() {
@@ -30,8 +34,12 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
         }
     }
 
+<<<<<<< HEAD
     inner class ProductViewHolder(private val binding: ItemProductBinding,
                                 clickAtPosition: (Int) -> (Unit)): RecyclerView.ViewHolder(binding.root) {
+=======
+    inner class ProductViewHolder(private val binding: ItemProductBinding, clickAtPosition: (Int) -> (Unit)): RecyclerView.ViewHolder(binding.root) {
+>>>>>>> master
 
         val layoutInflater = binding.productExpandableLayout
 
@@ -52,6 +60,10 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
             binding.root.setOnClickListener {
                 product.product.visibility = !product.product.visibility
                 notifyItemChanged(absoluteAdapterPosition)
+<<<<<<< HEAD
+=======
+                //notifyItemChanged(adapterPosition)
+>>>>>>> master
             }
         }
     }
@@ -67,5 +79,12 @@ class ProductRecyclerViewAdapter : ListAdapter<ProductWithDebtors, ProductRecycl
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
         holder.bind(product)
+<<<<<<< HEAD
+=======
+//
+//        holder.itemView.setOnClickListener {
+//            onItemClick?.invoke(product)
+//        }
+>>>>>>> master
     }
 }

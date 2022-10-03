@@ -1,7 +1,13 @@
 package com.odhiambodevelopers.rxkotlin.database
 
 import androidx.room.*
+<<<<<<< HEAD
 import com.odhiambodevelopers.rxkotlin.database.models.*
+=======
+import com.odhiambodevelopers.rxkotlin.database.models.Bill
+import com.odhiambodevelopers.rxkotlin.database.models.BillDebtorCrossRef
+import com.odhiambodevelopers.rxkotlin.database.models.BillWithProductsAndDebtors
+>>>>>>> master
 
 @Dao
 interface BillDao {
@@ -40,6 +46,7 @@ interface BillDao {
     @Query("SELECT * FROM Bill")
     fun getBillsWithProductsAndDebtors(): List<BillWithProductsAndDebtors>
 
+<<<<<<< HEAD
     @Transaction
     @Query("SELECT * FROM Bill WHERE billId = :billId")
     fun getBillByBillIdWithOwnerAndDebtors(billId: Long):  BillWithOwnerAndDebtors
@@ -51,4 +58,17 @@ interface BillDao {
     @Transaction
     @Query("SElECT * FROM Bill WHERE billId = :billId")
     fun getBillByBillIdWithOwnerAndDebtorsAndProductsWithDebtors(billId: Long): BillWithOwnerAndDebtorsWithProductsAndDebtors
+=======
+//    @Transaction
+//    @Query("SELECT * FROM Bill WHERE billId = :billId")
+//    fun getBillByBillIdWithOwnerAndDebtors(billId: Long):  BillWithOwnerAndDebtors
+//
+//    @Transaction
+//    @Query("SELECT * FROM Bill")
+//    fun getBillWithOwnerAndDebtors(billId: Long): List<BillWithOwnerAndDebtors>
+//
+//    @Transaction
+//    @Query("SElECT * FROM Bill WHERE billId = :billId")
+//    fun getBillByBillIdWithOwnerAndDebtorsAndProductsWithDebtors(billId: Long): BillWithOwnerAndDebtorsWithProductsAndDebtors
+>>>>>>> master
 }

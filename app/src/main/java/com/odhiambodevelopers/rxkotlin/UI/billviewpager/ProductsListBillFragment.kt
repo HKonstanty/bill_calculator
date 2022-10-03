@@ -37,12 +37,19 @@ class ProductsListBillFragment : Fragment() {
         })
 
 
+<<<<<<< HEAD
+=======
+//        adapter.onItemClick = {
+//            Log.d(TAG, "Item clicked ${it.product.productName}")
+//        }
+>>>>>>> master
         adapter.onItemClick = { productWithDebtors: ProductWithDebtors, i: Int ->
             Log.d(TAG, "Item clicked ${productWithDebtors.product.productName}")
             viewModel.deleteProduct(productWithDebtors)
             adapter.notifyItemRemoved(i)
         }
-        binding.addProductBt.setOnClickListener {
+
+            binding.addProductBt.setOnClickListener {
             parentFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<AddProductFragment>(R.id.fragment_container_view)

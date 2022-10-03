@@ -7,7 +7,10 @@ import com.odhiambodevelopers.rxkotlin.database.models.ProductWithDebtors
 import com.odhiambodevelopers.rxkotlin.database.models.User
 
 class ProductRepository(private val productDao: ProductDao) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     suspend fun getProductsWithBillId(billId: Long): List<Product> {
         return productDao.getProductsWithBillId(billId)
     }
