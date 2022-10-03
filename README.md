@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# bill_calculator
-An application designed to monitor expenses and split bills between friends.
-=======
 # Bill Calculator Application
 An application designed to monitor expenses and split bills between friends.
 
@@ -58,11 +54,9 @@ Below some application screens
 
 <p align="center">
 	<img src="./screenshots/user_list.png" width="250" >
-</p>
-<p align="center">
 	<img src="./screenshots/bill_list.png" width="250" >
+	<img src="./screenshots/bill_details_screen.png" width="250" >
 </p>
-
 
 ### Overview of application screens
 
@@ -99,4 +93,3 @@ Improvement:
 
 ## Contact
 Created by [@HKonstanty](https://github.com/HKonstanty/HKonstanty) - feel free to contact me!
->>>>>>> repository
