@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_nav_graph"
+    app:startDestination="@id/userDetailsFragment">
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.odhiambodevelopers.rxkotlin.UI.UserDetailsFragment"
+        android:label="User details"
+        tools:layout="@layout/fragment_user_details" >
+        <argument
+            android:name="user_id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <argument
+            android:name="user"
+            app:argType="com.odhiambodevelopers.rxkotlin.database.models.User"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>
